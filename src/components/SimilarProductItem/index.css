@@ -1,1 +1,61 @@
 /* Write your CSS here */
+img {
+  border-radius: 10px;
+  width: 100%;
+}
+
+li {
+  width: 33%;
+  padding: 20px;
+}
+h1 {
+  color: #171f46;
+  font-family: 'Roboto';
+  font-size: 35px;
+}
+
+p {
+  color: #616e7c;
+  font-family: 'Roboto';
+  font-size: 25px;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating {
+  font-size: 25px;
+  color: white;
+  font-family: 'Roboto';
+}
+.star {
+  font-size: 25px;
+}
+
+.price-rating-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  li {
+    width: 100%;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  p {
+    font-size: 20px;
+  }
+  .rating {
+    font-size: 18px;
+  }
+  .star {
+    font-size: 20px;
+  }
+}

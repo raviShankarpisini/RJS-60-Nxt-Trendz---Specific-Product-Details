@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
 import Header from '../Header'
 import SimilarProductItem from '../SimilarProductItem'
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -72,20 +73,22 @@ class ProductItemDetails extends Component {
 
   renderLoadingView = () => (
     <div testid="loader">
-      {/* <div> */}
       <Loader type="ThreeDots" color="#0b69ff" height={80} width={80} />
     </div>
   )
 
   renderFailureView = () => (
-    <div>
+    <div className="failure-container">
       <img
         src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-error-view-img.png"
         alt="failure view"
+        className="failure-image"
       />
       <h1>Product Not Found</h1>
       <Link to="/products">
-        <button type="button">Continue Shopping</button>
+        <button type="button" className="continue-shopping-button">
+          Continue Shopping
+        </button>
       </Link>
     </div>
   )
@@ -121,46 +124,61 @@ class ProductItemDetails extends Component {
       similarProducts,
     } = data
     return (
-      <div>
-        <div>
-          <img src={imageUrl} alt="product" />
-        </div>
-        <div>
-          <h1>{title}</h1>
-          <p>Rs {price}/-</p>
-          <div>
-            <div>
-              <p>{rating}</p>
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/star-img.png"
-                alt="star"
-              />
-            </div>
-            <p>{totalReviews} Reviews</p>
-          </div>
-          <p>{description}</p>
-          <p>
-            <span>Available:</span>
-            {availability}
-          </p>
-          <p>
-            <span>Brand:</span>
-            {brand}
-          </p>
-          <hr />
-          <div>
-            <button type="button" onClick={this.decreaseCount} testid="minus">
-              <BsDashSquare />
-            </button>
+      <div className="item-container">
+        <div className="main-product-container">
+          <img src={imageUrl} alt="product" className="item-image" />
 
-            <p>{count}</p>
-            <button type="button" onClick={this.increaseCount} testid="plus">
-              <BsPlusSquare />
+          <div className="text-container">
+            <h1 className="title-heading">{title}</h1>
+            <p className="price">Rs {price}/-</p>
+            <div className="rating-review-container">
+              <div className="rating-container">
+                <p>{rating}</p>
+                <img
+                  src="https://assets.ccbp.in/frontend/react-js/star-img.png"
+                  alt="star"
+                  className="star"
+                />
+              </div>
+              <p className="total-reviews">{totalReviews} Reviews</p>
+            </div>
+            <p className="description">{description}</p>
+            <p className="description">
+              <span className="total-reviews">Available: </span>
+              {availability}
+            </p>
+            <p className="description">
+              <span className="total-reviews">Brand:</span>
+              {brand}
+            </p>
+            <hr />
+            <div className="count-container">
+              <button
+                type="button"
+                className="count-button"
+                onClick={this.decreaseCount}
+                testid="minus"
+              >
+                <BsDashSquare className="icon" />
+              </button>
+
+              <p className="count-style">{count}</p>
+              <button
+                type="button"
+                className="count-button"
+                onClick={this.increaseCount}
+                testid="plus"
+              >
+                <BsPlusSquare className="icon" />
+              </button>
+            </div>
+            <button type="button" className="add-to-cart-button">
+              ADD TO CART
             </button>
           </div>
-          <button type="button">ADD TO CART</button>
         </div>
-        <h1>Similar Products</h1>
+
+        <h1 className="similar-products-heading">Similar Products</h1>
         <ul>
           {similarProducts.map(each => (
             <SimilarProductItem key={each.id} details={each} />
